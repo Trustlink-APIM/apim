@@ -1,0 +1,127 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Tools",
+        "version": "1.0",
+        "description": "Set of tools to test and query service availbility",
+        "contact": {
+            "name": "Jacques Verryn",
+            "email": "jacquesverryn@trustlink.co.za"
+        }
+    },
+    "host": "apim.trustlinkhosting.com:8165",
+    "schemes": [
+        "http"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "paths": {
+        "/echo": {
+            "post": {
+                "summary": "API Marketplace Echo Test",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "title": "EchoMessage",
+                            "type": "object",
+                            "description": "Echo message model",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "example": "Hello World",
+                                    "description": "Message to echo"
+                                },
+                                "code": {
+                                    "type": "integer",
+                                    "example": 200,
+                                    "description": "HTTP Status Code to echo on"
+                                }
+                            },
+                            "required": [
+                                "message",
+                                "code"
+                            ]
+                        }
+                    }
+                },
+                "description": "Echo a JSON body with a message and code",
+                "operationId": "tools-echo",
+                "tags": [
+                    "Tools"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "schema": {
+                            "title": "EchoMessage",
+                            "type": "object",
+                            "description": "Echo message model",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "example": "Hello World",
+                                    "description": "Message to echo"
+                                },
+                                "code": {
+                                    "type": "integer",
+                                    "example": 200,
+                                    "description": "HTTP Status Code to echo on"
+                                }
+                            },
+                            "required": [
+                                "message",
+                                "code"
+                            ]
+                        },
+                        "x-examples": {
+                            "Hello World": {
+                                "message": "Hello World",
+                                "code": 200
+                            }
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "description": "Marketplace API Key",
+                        "name": "marketplaceKeyId",
+                        "in": "header"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Version of the API. (Latest version 1.0)",
+                        "name": "version",
+                        "in": "query",
+                        "required": true
+                    }
+                ]
+            }
+        }
+    },
+    "definitions": {},
+    "basePath": "/sandbox/apim/tools",
+    "tags": [
+        {
+            "name": "Tools"
+        }
+    ],
+    "securityDefinitions": {
+        "Marketplace API Key": {
+            "type": "apiKey",
+            "description": "API Key",
+            "name": "marketplaceKeyId"
+        },
+        "in": "header"
+    },
+    "security": [
+        {
+            "Marketplace API Key": []
+        }
+    ],
+    "buildtarget": "stoplight"
+}
